@@ -1,0 +1,3 @@
+- closed world assumption: every possible event is assumed to be known and included in the different mismatch categories. This is obviously unrealistic and has to be considered.
+- Abstraction from actual path planning: The analysis does not take into account the actual path planning algorithms used by the robot, which may affect the observed mismatches.
+- 
