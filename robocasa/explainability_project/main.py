@@ -1,27 +1,38 @@
-registry = MismatchRegistry()
-explainer = ExplanationGenerator()
-context = WorldContext()
+from data_structures import plan, task, action, item
+from plan_generator import generateSimplePlan, generateActualPlan, savePlanToJSON, printPlan
+from mismatch_finder import findMismatch
+import datetime
 
-# register expected load order from counter layout at episode start
-registry.sequential.register_expected_order(
-    [cfg["name"] for cfg in env.obj_cfgs]
-)
 
-for t, action in enumerate(actions):
-    context.current_step = t
-    beliefs = belief_mod.update(obs, env)
-    current_b = beliefs[0]
-    desire = desire_mod.active_goal(current_b)
-    intention = intention_mod.decide(current_b, desire)
+# First, an ordered list of the items that are to be loaded into the dishwasher is created.
+# At this point, we assume that information is given.
 
-    events = registry.check_all(intention, context)
-    for event in events:
-        explainer.emit(event)
+item1 = item("plate", "medium", "left", False)
+item2 = item("cup", "small", "middle", True)
+item3 = item("bowl", "large", "right", False)
 
-    if not intention.skip:
-        context.load_history.append(current_b.name)
-        context.last_action_step = t
+items = [item1, item2, item3]
 
-    obs, reward, terminated, truncated, info = env.step(action)
-    if terminated or truncated:
-        break
+
+# Then, create two plans, one simple plan and one actual plan that is to be executed by the robot.
+
+simplePlan = generateSimplePlan(items)
+actualPlan = generateActualPlan(items)
+
+# Then, save each plan to a JSON file.
+# The file names specifying the plan type are followed by a timestamp of creation.
+# The plan files are saved in the plans folder.
+timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+simplePlanFilename = "simple_plan.json" + timestamp
+actualPlanFilename = "actual_plan.json" + timestamp
+savePlanToJSON(simplePlan, simplePlanFilename)
+savePlanToJSON(actualPlan, actualPlanFilename)
+
+#printPlan(simplePlan)
+
+# Then, compare the two plans using the mismatch finder.
+
+#mismatches = findMismatch(actualPlan, simplePlan)
+
+# The found mismatches are then printed to the console. 
+# They are also later used for the explanation generation and the visually displayed on the web interface.
