@@ -1,0 +1,88 @@
+{
+  "tasks": [
+    {
+      "description": "open the dishwasher",
+      "type": "open_dw",
+      "actions": [
+        {
+          "description": "open the dishwasher",
+          "type": "open_dw"
+        }
+      ]
+    },
+    {
+      "description": "load the cup",
+      "type": "load",
+      "actions": [
+        {
+          "description": "pull out the upper rack",
+          "type": "pull_out_upper_rack"
+        },
+        {
+          "description": "load the cup",
+          "type": "load"
+        }
+      ],
+      "target": {
+        "name": "cup",
+        "size": "small",
+        "position": "right",
+        "isFragile": false
+      }
+    },
+    {
+      "description": "load the plate",
+      "type": "load",
+      "actions": [
+        {
+          "description": "push in the upper rack",
+          "type": "push_in_upper_rack"
+        },
+        {
+          "description": "pull out the bottom rack",
+          "type": "pull_out_bottom_rack"
+        },
+        {
+          "description": "load the plate",
+          "type": "load"
+        }
+      ],
+      "target": {
+        "name": "plate",
+        "size": "medium",
+        "position": "left",
+        "isFragile": false
+      }
+    },
+    {
+      "description": "load the bowl",
+      "type": "load",
+      "actions": [
+        {
+          "description": "load the bowl",
+          "type": "load"
+        }
+      ],
+      "target": {
+        "name": "bowl",
+        "size": "large",
+        "position": "middle",
+        "isFragile": false
+      }
+    },
+    {
+      "description": "close the dishwasher",
+      "type": "close_dw",
+      "actions": [
+        {
+          "description": "push in the bottom rack",
+          "type": "push_in_bottom_rack"
+        },
+        {
+          "description": "close the dishwasher",
+          "type": "close_dw"
+        }
+      ]
+    }
+  ]
+}

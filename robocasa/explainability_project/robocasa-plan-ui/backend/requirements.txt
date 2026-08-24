@@ -1,0 +1,5 @@
+Flask==2.0.1
+Flask-Cors==3.0.10
+pydantic==1.8.2
+numpy==1.26.4
+Werkzeug==2.3.8
