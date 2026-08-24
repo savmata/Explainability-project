@@ -1,5 +1,3 @@
-# robocasa-plan-ui
-
 ## Overview
 The Robocasa Plan UI is a web application designed to facilitate the creation and management of plans for a robotic dishwasher. It allows users to input item details, generate simple and actual plans, and view the results in a user-friendly interface.
 
